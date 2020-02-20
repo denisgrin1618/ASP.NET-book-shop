@@ -1,0 +1,20 @@
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.pdb
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.pdb
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.dll.config
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\EntityFramework.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\EntityFramework.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.csprojResolveAssemblyReference.cache
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.dll.config
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\BookStore.Domain.pdb
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\EntityFramework.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\EntityFramework.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.csprojResolveAssemblyReference.cache
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore - копия (3)\BookStore\BookStore.Domain\obj\Debug\BookStore.Domain.pdb

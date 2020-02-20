@@ -1,0 +1,56 @@
+﻿@model BookStore.WebUI.Models.CategoriesListViewModel
+
+@{
+    ViewBag.Title = "Категории";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="row">
+
+            <table class=" table table-hover">
+                <tr>
+                    <th>
+                       Название
+                    </th>
+                    <th>
+                        Описание
+                    </th>
+                    <th colspan="2">
+                            @Html.ActionLink("Добавить новую категорию", "CreateCategory", "Admin", null, new { @class = "btn btn-primary", type = "button" })
+                    </th>
+
+                </tr>
+
+                @foreach (var item in Model.Categories)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Description)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Редактировать", "EditCategory", "Admin", new { CategoryID=item.CategoryID }, new { id = item.CategoryID, @class = "btn btn-success", type = "button" })
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("DeleteCategory", "Admin"))
+                            {
+                                @Html.Hidden("CategoryID", item.CategoryID)
+                                <input type="submit" value="Удалить" class="btn btn-danger" />
+                            }                            
+                        </td>
+                    </tr>
+                }
+
+            </table>
+
+    </div>
+
+<br />
+<div class="row" id="numerator">
+    <div class="col-xs-6 col-lg-4"></div>
+    <div class="btn-group col-xs-6 col-lg-4" role="group" aria-label="First group">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Categories", "Admin", new { page = x }))
+    </div>
+</div><!--/row-->

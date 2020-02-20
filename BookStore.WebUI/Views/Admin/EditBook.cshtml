@@ -1,0 +1,129 @@
+﻿@model BookStore.Domain.Entities.Book
+@{
+    ViewBag.Title = "Редактирование" + @Model.Name;
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="row">
+       
+            @using (Html.BeginForm("EditBook", "Admin", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-horizontal" }))
+            {
+               @Html.Hidden("BookID", @Model.BookID)
+                <br />
+                <blockquote>
+                    <p>Редактирование книги: @Model.Name</p>
+                    <footer>ID <cite title="Source Title">@Model.BookID</cite></footer>
+                </blockquote>
+
+                if (ViewBag.ErrorValidation != null && ViewBag.ErrorValidation == true)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <strong>ОШИБКИ:</strong>
+                        <strong>@Html.ValidationSummary()</strong>
+                    </div>
+                }
+
+                string classForName = (ViewContext.ViewData.ModelState.IsValidField("Name") ? "" : "has-error");
+                string classForCategory = (ViewContext.ViewData.ModelState.IsValidField("Category") ? "" : "has-error");
+                string classForAuthor = (ViewContext.ViewData.ModelState.IsValidField("Author") ? "" : "has-error");
+                string classForPublisher = (ViewContext.ViewData.ModelState.IsValidField("Publisher") ? "" : "has-error");
+                string classForYear = (ViewContext.ViewData.ModelState.IsValidField("Year") ? "" : "has-error");
+                string classForISBN = (ViewContext.ViewData.ModelState.IsValidField("ISBN") ? "" : "has-error");
+                string classForNumberOfPages = (ViewContext.ViewData.ModelState.IsValidField("NumberOfPages") ? "" : "has-error");
+                string classForPrice = (ViewContext.ViewData.ModelState.IsValidField("Price") ? "" : "has-error");
+                string classForDescription = (ViewContext.ViewData.ModelState.IsValidField("Description") ? "" : "has-error");
+                
+                <div class="form-group @classForName">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Name)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", type = "text", id = "formGroupInputLarge"  })
+                    </div>
+                </div>
+
+                <div class="form-group @classForCategory">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Category)</label>
+                    <div class="col-sm-9">
+                        @{ string categoryName = (@Model.Category == null ? "" : @Model.Category.Name);}
+                        @{ Html.RenderAction("DropdownCategories", "Admin", new { category = @categoryName }); }
+                    </div>
+                </div>
+                
+                <div class="form-group @classForAuthor">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Author)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Author, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForPublisher">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Publisher)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Publisher, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForYear">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Year)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Year, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForISBN">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.ISBN)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.ISBN, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForNumberOfPages">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.NumberOfPages)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.NumberOfPages, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForPrice">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Price)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Price, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForDescription">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Description)</label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @rows = 5, type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">Картинка</label>
+                    <div class="col-sm-9">
+                        
+                        @if (Model.ImageData == null)
+                        {
+                            @:Нет картинки
+                        }
+                        else
+                        {
+                            <img src="@Url.Action("GetImage", "Book", new {Model.BookID })" alt="..." class="img-thumbnail">
+                        }
+                        <input type="file" name="Image" class="btn btn-default" />
+                    </div>
+                </div>
+
+                  
+                
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <input type="submit" value="Сохранить" class="btn btn-success" />
+                        @Html.ActionLink("Отменить и вернуться к списку", "Books", "Admin", null, new { @class = "btn btn-default", type = "button" })
+                    </div>
+                </div>
+                
+                
+            }
+
+    </div>

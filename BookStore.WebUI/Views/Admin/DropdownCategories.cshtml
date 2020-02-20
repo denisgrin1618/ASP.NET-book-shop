@@ -1,0 +1,20 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Category>
+
+<select name="category" class="form-control" id="formGroupInputLarge">
+        <option>
+            @ViewBag.SelectedCategory
+        </option>      
+        @foreach (var item in Model)
+        {
+            if (item.Name != @ViewBag.SelectedCategory)
+            {
+                <option>
+                    @item.Name
+                </option>
+            }
+        }
+</select>
+
+
+
+

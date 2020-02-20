@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Category>
+
+    <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar">
+        <div class="list-group">
+
+        @foreach (var link in Model)
+        {
+            @Html.RouteLink(link.Name,
+                    new
+                    {
+                        controller = "Book",
+                        action = "List",
+                        category = link.Name,
+                        page = 1
+                    },
+                     new
+                     {
+                         @class = (link.Name == ViewBag.SelectedCategoryName ? "list-group-item active" : "list-group-item")
+                     })
+        }
+
+        </div>
+    </div>

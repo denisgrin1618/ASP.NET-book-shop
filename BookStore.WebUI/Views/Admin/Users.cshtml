@@ -1,0 +1,60 @@
+﻿@model BookStore.WebUI.Models.UsersListViewModel
+
+@{
+    ViewBag.Title = "Пользователи";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+    <div class="row">
+  
+        <table class=" table table-hover">
+            <tr>
+                <th>
+                    Логин
+                </th>
+                <th>
+                    Email
+                </th>
+                <th colspan="2" class="text-center">
+                    @Html.ActionLink("Добавить нового пользователя", "CreateUser", "Admin", null, new { @class = "btn btn-primary", type = "button" })
+                </th>
+                
+            </tr>
+
+            @foreach (var item in Model.Users)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td class="text-right">
+                        @Html.ActionLink("Заказы", "Orders", "Admin", new { UserID = item.UserID }, new { id = item.UserID, @class = "btn btn-success", type = "button" })
+                        @Html.ActionLink("Редактировать", "EditUser", "Admin", new { UserID = item.UserID }, new { id = item.UserID, @class = "btn btn-success", type = "button" })
+                    </td>
+                    <td >
+                        @using (Html.BeginForm("DeleteUser", "Admin"))
+                        {
+                            @Html.Hidden("UserID", item.UserID)
+                            <input type="submit" value="Удалить" class="btn btn-danger" />
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+
+       
+
+    </div>
+
+<br />
+<div class="row" id="numerator">
+    <div class="col-xs-6 col-lg-4"></div>
+    <div class="btn-group col-xs-6 col-lg-4" role="group" aria-label="First group">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Users", "Admin", new { page = x}))
+    </div>
+</div><!--/row-->

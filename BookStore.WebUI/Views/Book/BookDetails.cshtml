@@ -1,0 +1,91 @@
+﻿@model BookStore.Domain.Entities.Book
+
+@{
+    ViewBag.Title = "Книги";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+    <div class="container">
+
+        <div class="row row-offcanvas row-offcanvas-right">
+
+            <div class="col-xs-12 col-sm-9">
+            
+                
+
+                <div class="row">
+                   <h2>@Model.Name</h2>
+                </div>	
+
+                <div class="row">
+
+                    <div class="col-xs-6 col-lg-4">
+                        @if (Model.ImageData != null)
+                        {
+                            <img src="@Url.Action("GetImage", "Book", new {Model.BookID })" width="200" height="300" />
+                        }
+                        else
+                        {
+                            <img src="~/Content/Images/DefaultBook.jpg" width="200" height="300" />
+                        }
+                    </div>
+
+                    <div class="col-xs-6 col-lg-8">
+                        <div class="caption">
+                        
+                        @using (Html.BeginForm("AddToCart", "Cart"))
+                        {
+                            @Html.HiddenFor(t => t.BookID)
+                             @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+                            <table class="table">
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.Author)</td>
+                                    <td>@Model.Author</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.Publisher)</td>
+                                    <td>@Model.Publisher</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.ISBN)</td>
+                                    <td>@Model.ISBN</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.NumberOfPages)</td>
+                                    <td>@Model.NumberOfPages</td>
+                                </tr>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.Year)</td>
+                                    <td>@Model.Year</td>
+                                </tr>
+                                <tr>
+                                    <td><strong>@Html.DisplayNameFor(model => model.Price)</strong></td>
+                                    <td><strong>@Model.Price</strong></td>
+                                </tr>
+                            </table>	
+
+                            <button type="submit" class="btn btn-primary" role="button">
+                                <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> В корзину
+                            </button> 
+                            
+                        }                     
+
+                        </div>
+                    </div>
+
+                </div><!--/row-->
+
+                <div class="row">
+                    <br />
+                    <p>@Model.Description</p>
+                </div>
+
+            </div><!--/.col-xs-12.col-sm-9-->
+
+            <!--Группа разделов-->
+            @{ string SelectedCategory = @ViewBag.SelectedCategory != null ? @ViewBag.SelectedCategory.Name : ""; }
+            @{ Html.RenderAction("Menu", "Category", new { category = @SelectedCategory }); }
+
+        </div><!--/row-->
+    </div><!--/.container-->

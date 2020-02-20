@@ -1,0 +1,85 @@
+﻿@model BookStore.WebUI.Models.BooksListViewModel
+
+@{
+    ViewBag.Title = "Книги";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="row">
+       
+            <table class="table table-hover">
+                <tr>
+                    <th>
+                        Название
+                    </th>
+                    <th>
+                        Автор
+                    </th>
+                    <th>
+                        Издатель
+                    </th>
+                    <th>
+                        Год издания
+                    </th>
+                    <th>
+                        ISBN
+                    </th>
+                    <th>
+                        Кол-во страниц
+                    </th>
+                    <th>
+                        Цена
+                    </th>
+                    <th colspan="2">
+                            @Html.ActionLink("Добавить новую книгу", "CreateBook", "Admin", null, new { @class = "btn btn-primary", type = "button" })
+                    </th>
+                </tr>
+
+                @foreach (var item in Model.Books)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Author)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Publisher)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Year)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ISBN)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumberOfPages)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Price)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Редактировать", "EditBook", "Admin", new { BookID = item.BookID }, new { id = item.BookID, @class = "btn btn-success", type = "button" })
+                        </td>
+                        <td>
+                            @using (Html.BeginForm("DeleteBook", "Admin"))
+                            {
+                                @Html.Hidden("BookID", item.BookID)
+                                <input type="submit" value="Удалить" class="btn btn-danger" />
+                            }
+                        </td>
+                    </tr>
+                }
+
+            </table>      
+
+    </div>
+
+    <br />
+    <div class="row" id="numerator">
+    <div class="col-xs-6 col-lg-4"></div>
+    <div class="btn-group col-xs-6 col-lg-4" role="group" aria-label="First group">
+        @Html.PageLinks(Model.PagingInfo, x => Url.Action("Books", "Admin", new { page = x }))
+    </div>
+</div><!--/row-->

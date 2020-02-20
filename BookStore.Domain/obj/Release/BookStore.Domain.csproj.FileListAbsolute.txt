@@ -1,0 +1,10 @@
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\BookStore.Domain.dll.config
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\BookStore.Domain.pdb
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\EntityFramework.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\EntityFramework.SqlServer.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\EntityFramework.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\bin\Release\EntityFramework.SqlServer.xml
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Release\BookStore.Domain.csprojResolveAssemblyReference.cache
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Release\BookStore.Domain.dll
+D:\Google Disk\Домашка\Курсовой проект\Интерент магазин Книг\BookStore\BookStore\BookStore.Domain\obj\Release\BookStore.Domain.pdb

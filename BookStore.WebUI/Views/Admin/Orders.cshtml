@@ -1,0 +1,69 @@
+﻿@model IEnumerable<BookStore.Domain.Entities.Order>
+
+@{
+    ViewBag.Title = "Редактирование категории";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    
+    <div class="page-header">
+        <h2>Заказы покупателя @ViewBag.UserName</h2>       
+    </div>
+       
+    <table class="table table-hover"> 
+    <thead> 
+        <tr> 
+            <th>Дата</th> 
+            <th>Книга</th> 
+            <th>Количество</th> 
+            <th>Цена</th> 
+            <th>Сумма</th> 
+        </tr> 
+    </thead> 
+    <tbody> 
+
+        @{ decimal totalSum = 0; decimal sum = 0; }
+        @foreach (BookStore.Domain.Entities.Order order in Model)
+        {
+            foreach(BookStore.Domain.Entities.OrderLine line in order.OrderLines)
+            {
+                
+                sum = line.Quantity * line.Price;
+                totalSum += (line.Quantity * line.Price);
+                 <tr> 
+                    <th>
+                        @Html.DisplayFor(x => order.Date)
+                    </th> 
+                     <th>
+                         @Html.DisplayFor(x => line.Book.Name)
+                     </th> 
+                     <th>
+                         @Html.DisplayFor(x => line.Quantity)
+                     </th> 
+                     <th>
+                         @Html.DisplayFor(x => line.Price)
+                     </th> 
+                     <th>
+                         @sum
+                     </th> 
+                </tr> 
+            }
+                                
+        }   
+        
+        <tr>
+            <th colspan="4" class="text-right">
+                Всего:
+            </th>
+            <th>
+                @totalSum
+            </th>
+        </tr> 
+             
+        </tbody> 
+    </table>
+
+</div>
+
+

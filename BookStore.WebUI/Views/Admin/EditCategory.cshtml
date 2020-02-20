@@ -1,0 +1,55 @@
+﻿@model BookStore.Domain.Entities.Category
+
+@{
+    ViewBag.Title = "Редактирование категории";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+    <div class="row">
+
+            @using (Html.BeginForm("EditCategory", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+            {
+                <br />
+                <blockquote>
+                    <p>Редактирование категории: @Model.Name</p>
+                    <footer>ID <cite title="Source Title">@Model.CategoryID</cite></footer>
+                </blockquote>
+
+                 @Html.Hidden("CategoryID", @Model.CategoryID)
+                
+               if (ViewBag.ErrorValidation != null && ViewBag.ErrorValidation == true)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        <strong>ОШИБКИ:</strong>
+                        <strong>@Html.ValidationSummary()</strong>
+                    </div>
+                }
+              
+                string classForName = (ViewContext.ViewData.ModelState.IsValidField("Name") ? "" : "has-error");
+                string classForDescription = (ViewContext.ViewData.ModelState.IsValidField("Description") ? "" : "has-error");
+                
+                <div class="form-group @classForName">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Name)</label>
+                    <div class="col-sm-9">
+                        @Html.TextBoxFor(x => x.Name, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group @classForDescription">
+                    <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Description)</label>
+                    <div class="col-sm-9">
+                        @Html.TextAreaFor(x => x.Description, new { @class = "form-control", @rows = 5, type = "text", id = "formGroupInputLarge" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-3 col-sm-9">
+                        <input type="submit" value="Сохранить" class="btn btn-success" />
+                        @Html.ActionLink("Отменить и вернуться к списку", "Categories", "Admin", null, new { @class = "btn btn-default", type = "button" })
+                    </div>
+                </div>
+            }
+
+    </div>
+
+

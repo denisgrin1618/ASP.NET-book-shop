@@ -1,0 +1,62 @@
+﻿@model BookStore.WebUI.Models.CartIndexViewModel
+
+@{
+    ViewBag.Title = "Корзина";
+}
+
+@{
+    string UserName = Session["CurrentUser"] != null ? ((BookStore.Domain.Entities.User)(Session["CurrentUser"])).Name : "Гость";
+}
+
+<h2>Ваша корзина</h2>
+
+<table width="90%" align="center" class="table table-hover">
+    <thead>
+        <tr>
+            <th align="center">Количество</th>
+            <th align="left">Название</th>
+            <th align="right">Цена</th>
+            <th align="right">Сумма</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var line in Model.Cart.Lines)
+        {
+            <tr>
+                <td align="center">@line.Quantity</td>
+                <td align="left">@line.Book.Name</td>
+                <td align="right">@line.Book.Price.ToString("0.##") грн.</td>
+                <td align="right">@((line.Quantity * line.Book.Price).ToString("0.##")) грн.</td>
+                <td>
+                    @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                    {
+                        @Html.Hidden("BookId", line.Book.BookID)
+                        @Html.HiddenFor(x => x.ReturnUrl)
+                        <input type="submit" value="Удалить" class="btn btn-danger" />
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+    <tfoot>
+        <tr>
+            <td colspan="3" align="right"><strong>Всего:</strong></td>
+            <td align="right">
+                <strong>
+                    @Model.Cart.ComputeTotalValue().ToString("0.##") грн.
+                </strong> 
+            </td>
+        </tr>
+    </tfoot>
+</table>
+<p align="center" class="actionButtons">
+    <a class="btn btn-default" href="@Model.ReturnUrl">Продолжить покупки</a>
+
+    <a class="btn btn-primary" role="button" href="@Url.Action("Checkout", "Cart")">
+        <span class="glyphicon glyphicon glyphicon-ok" aria-hidden="true"></span> Оформить заказ
+    </a>
+</p>
+
+
+
+   

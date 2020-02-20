@@ -1,0 +1,32 @@
+﻿@model BookStore.Domain.Entities.Book
+
+@using (Html.BeginForm("AddToCart", "Cart"))
+{
+     @Html.HiddenFor(x => x.BookID)
+     @Html.Hidden("returnUrl", Request.Url.PathAndQuery)
+    
+    <div class="col-xs-6 col-lg-4">
+        <div class="thumbnail">
+
+            @if (Model.ImageData != null)
+            {
+                <img src="@Url.Action("GetImage", "Book", new {Model.BookID })" width="200" height="300" />
+            }
+            else
+            {
+                <img src="~/Content/Images/DefaultBook.jpg" width="200" height="300" />
+            }
+        
+            <div class="caption" >
+                <h3>@Model.Name</h3>
+                <p>
+                    <a class="btn btn-default" href="@Url.Action("BookDetails", "Book", new { BookID = @Model.BookID})" role="button">Детали &raquo;</a>
+                
+                    <button type="submit" class="btn btn-primary" role="button">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> В корзину
+                    </button>           
+                </p>
+            </div>
+        </div>
+    </div><!--/.col-xs-6.col-lg-4-->
+}

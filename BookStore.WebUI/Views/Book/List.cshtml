@@ -1,0 +1,75 @@
+﻿@model BookStore.WebUI.Models.BooksListViewModel
+
+@{
+    ViewBag.Title = "Книги";
+}
+
+
+<div class="container">
+
+    <div class="row row-offcanvas row-offcanvas-right">
+
+        <div class="col-xs-12 col-sm-9">
+            <p class="pull-right visible-xs">
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
+            </p>
+            @if (Model.CurrentCategory != null)
+            {
+                <div class="jumbotron">
+                    <h1>@Model.CurrentCategory.Name</h1>
+                    <p>@Model.CurrentCategory.Description</p>
+                </div>
+            }
+            
+
+           <!--Контейнер книг-->
+           <div>
+
+                @{int i = 1; bool opendiv = false;}
+
+                @foreach (var p in Model.Books)
+                {
+                    if (i == 1 || ((i-1) % 3) == 0)
+                    {
+                        @:<div class="row">
+                        opendiv = true;
+                    }
+
+                    Html.RenderPartial("Book", p);
+
+                    if (i % 3 == 0)
+                    {
+                        @:</div>
+                        opendiv = false;
+                    }
+                    i++;
+                }
+
+                @if (opendiv)
+                {
+                     @:</div>
+                }
+
+                <!--Нумерация-->
+                <br />
+                <div class="row">
+                    <div class="col-xs-6 col-lg-4"></div>
+                    <div class="btn-group col-xs-6 col-lg-4" role="group" aria-label="First group">                        
+                        @Html.PageLinks(Model.PagingInfo, x => Url.Action("List", "Book",
+                                        new { page = x, category = (Model.CurrentCategory == null ? (string)null : Model.CurrentCategory.Name) }))
+
+                    </div>
+                </div><!--/row-->           
+
+            </div> <!--Контейнер книг-->
+        
+        </div><!--/.col-xs-12.col-sm-9-->
+
+        <!--Группа разделов-->
+        @{ string SelectedCategory = @ViewBag.SelectedCategory != null ? @ViewBag.SelectedCategory.Name : ""; }
+        @{ Html.RenderAction("Menu", "Category", new { category = @SelectedCategory }); }
+
+    </div><!--/row-->
+
+</div><!--/.container-->
+

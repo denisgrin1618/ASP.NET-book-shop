@@ -1,0 +1,3 @@
+﻿@model BookStore.Domain.Entities.Cart
+
+<a href="@Url.Action("Index", "Cart", new { returnUrl = Request.Url.PathAndQuery })">Корзина <span class="badge">@Model.ComputeTotalValue().ToString("0.##") грн.</span></a>

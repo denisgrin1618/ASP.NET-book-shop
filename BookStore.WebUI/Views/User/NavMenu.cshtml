@@ -1,0 +1,74 @@
+﻿@{
+    string classAbout = (ViewBag.ActiveTab == "About") ? "active" : " ";
+    string classPayment = (ViewBag.ActiveTab == "Payment") ? "active" : " ";
+    string classHelp = (ViewBag.ActiveTab == "Help") ? "active" : " ";
+    string classContacts = (ViewBag.ActiveTab == "Contacts") ? "active" : " ";
+}
+
+<div class="container">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Навигация</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="@Url.Action("List", "Book")"><strong>HELLO WORLD</strong></a>
+    </div>
+
+    <div id="navbar" class="collapse navbar-collapse">
+        <ul class="nav navbar-nav">
+
+
+            <li class="@classAbout"><a href="@Url.Action("Index", "About")">О магазине</a></li>
+            <li class="@classPayment"><a href="@Url.Action("Index", "Payment")">Оплата</a></li>
+            <li class="@classHelp"><a href="@Url.Action("Index", "Help")">Помощь</a></li>
+            <li class="@classContacts"><a href="@Url.Action("Index", "Contacts")">Контакты</a></li>
+        </ul>
+
+        @using (Html.BeginForm("SearchBooks", "Book", FormMethod.Post, new { @class = "navbar-form navbar-left", role="search" }))
+        {
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="введите название книги..." name="NameBookSearch" id="NameBookSearch">
+            </div>
+            <button type="submit" class="btn btn-default">Поиск</button>
+        }
+       
+
+        <ul class="nav navbar-nav navbar-right">
+
+            @{
+                string UserName = "";
+                if (Session["CurrentUser"] != null)
+                {
+                    UserName = ((BookStore.Domain.Entities.User)(Session["CurrentUser"])).Name;
+                }
+            }
+            @{
+                if (UserName != "")
+                {
+
+                    <li>
+                        <a href="#"><strong>@UserName</strong></a>
+                    </li>
+                    <li>
+                        @{Html.RenderAction("Summary", "Cart");}
+                    </li>
+                }
+                else
+                {
+                    <li>
+                        <a href="#modalReg" data-toggle="modal" data-target="#modalReg"><strong>Регистрация</strong></a>
+                    </li>
+                    <li>
+                        <a href="#modal" data-toggle="modal" data-target="#modal"><strong>Вход</strong></a>
+                    </li>
+                }
+            }
+
+
+        </ul>
+
+    </div><!-- /.nav-collapse -->
+
+</div><!-- /.container -->

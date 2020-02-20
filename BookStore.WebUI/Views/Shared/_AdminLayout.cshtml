@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+    <meta charset="windows-1251">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">   
+    <link rel="icon" href="~/Content/Images/Brande26x26.png">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet">
+    <script src="~/Scripts/jquery-1.9.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        $("document").ready(function () {
+            if ($(document).height() <= $(window).height())
+                $("#numerator").addClass("navbar-fixed-bottom");
+
+            $('#modal').modal();
+        });
+    </script>
+
+</head>
+
+<body>
+
+    @{       
+        var classBooks = "Books" == ViewBag.SelectedAdminTab ? "active" : "";
+        var classCategories = "Categories" == ViewBag.SelectedAdminTab ? "active" : "";
+        var classUsers = "Users" == ViewBag.SelectedAdminTab ? "active" : "";
+    }
+
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-1 col-sm-10">
+
+                <br />
+                <ul class="nav nav-tabs">                  
+                    <li role="presentation" class=@classBooks>
+                        @Html.RouteLink("Книги", new { controller = "Admin", action = "Books" })
+                    </li>
+                    <li role="presentation" class=@classCategories>
+                        @Html.RouteLink("Категории", new { controller = "Admin", action = "Categories" })
+                    </li>
+                    <li role="presentation" class=@classUsers>
+                        @Html.RouteLink("Пользователи", new { controller = "Admin", action = "Users" })
+                    </li>
+                </ul>
+
+                <br />
+                @if (TempData["message"] != null)
+                {
+                  <div class="alert alert-info" role="alert">@TempData["message"]</div>
+                }
+
+                @RenderBody()
+
+            </div>
+        </div>
+    </div>
+
+                
+
+</body>
+
+</html>

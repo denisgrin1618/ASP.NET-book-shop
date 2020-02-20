@@ -1,0 +1,49 @@
+﻿@model BookStore.WebUI.Models.LoginViewModel
+@{
+    ViewBag.Title = "Admin: Log In";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+
+    @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <div class="page-header">
+            <h2>Авторизация</h2>
+            <h3>Пожалуйста введите логи и пароль администратора</h3>
+        </div>
+
+        if (ViewBag.ErrorValidation != null && ViewBag.ErrorValidation == true)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>ОШИБКИ:</strong>
+                <strong>@Html.ValidationSummary()</strong>
+            </div>
+        }
+
+        string classForUserName = (ViewContext.ViewData.ModelState.IsValidField("UserName") ? "" : "has-error");
+        string classForPassword = (ViewContext.ViewData.ModelState.IsValidField("Password") ? "" : "has-error");
+
+        <div class="form-group @classForUserName">
+            <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.UserName)</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+            </div>
+        </div>
+
+        <div class="form-group @classForPassword">
+            <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Password)</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "password", id = "formGroupInputLarge" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="submit" value="Войти" class="btn btn-success" />
+            </div>
+        </div>
+    }
+
+</div>

@@ -1,0 +1,61 @@
+﻿@model BookStore.Domain.Entities.User
+
+@{
+    ViewBag.Title = "Редактирование пользователя";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    
+    @using (Html.BeginForm("EditUser", "Admin", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <br />
+
+        @Html.Hidden("UserID", @Model.UserID)
+        if (ViewBag.ErrorValidation != null && ViewBag.ErrorValidation == true)
+        {
+            <div class="alert alert-danger" role="alert">
+                <strong>ОШИБКИ:</strong>
+                <strong>@Html.ValidationSummary()</strong>
+            </div>
+        }
+
+        string classForName = (ViewContext.ViewData.ModelState.IsValidField("Name") ? "" : "has-error");
+        string classForEmail = (ViewContext.ViewData.ModelState.IsValidField("Email") ? "" : "has-error");
+        string classForPassword = (ViewContext.ViewData.ModelState.IsValidField("Password") ? "" : "has-error");
+
+        
+        <div class="form-group @classForName">
+            <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Name)</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(x => x.Name, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+            </div>
+        </div>
+
+    <div class="form-group @classForEmail">
+        <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Email)</label>
+        <div class="col-sm-9">
+            @Html.TextBoxFor(x => x.Email, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })        
+        </div>
+    </div>
+
+        <div class="form-group @classForPassword">
+            <label class="col-sm-3 control-label" for="formGroupInputLarge">@Html.DisplayNameFor(model => model.Password)</label>
+            <div class="col-sm-9">
+                @Html.TextBoxFor(x => x.Password, new { @class = "form-control", type = "text", id = "formGroupInputLarge" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-offset-3 col-sm-9">
+                <input type="submit" value="Сохранить" class="btn btn-success" />
+                @Html.ActionLink("Отменить и вернуться к списку", "Users", "Admin", null, new { @class = "btn btn-default", type = "button" })
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+
